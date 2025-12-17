@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+<h2>Bienvenue au SHOP SNOK!</h2>
+
+<p id="date-actuelle"></p>
+<div class="container">
+    {% for c in cars %}
+        <div class="car-column">
+            <div class="image-container">
+            <img src="{{ asset('img/' ~ c.img) }}" alt="{{ c.titre }}">
+            <button class="center-btn">Acheter</button>
+            </div>
+            <div class="card">
+            <p>Vous pouvez contacter {{c.marque}} :</p>
+            <a href="{{c.site}}" target="_blank">{{c.marque}} CONTACT</a>
+            <h2>{{c.titre}}</h2>
+            <h1>{{c.prix}}$</h1>
+            </div>
+        </div>
+        
+        
+            {% endfor %}
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            afficherDate();
+        });
+
+        function afficherDate() {
+            const element = document.getElementById("date-actuelle");
+            if (!element) return;
+
+            const jours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+            const mois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+            const now = new Date();
+
+            element.textContent =
+                `${jours[now.getDay()]} ${now.getDate()} ${mois[now.getMonth()]} ${now.getFullYear()}`;
+        }
+    </script>
+{% endblock %}

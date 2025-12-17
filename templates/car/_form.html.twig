@@ -1,0 +1,11 @@
+{{ form_start(form, {'attr': {'class': 'need-validation', 'novalidate': 'novalidate'}}) }}
+    {{ form_row(form.titre) }}
+    {{ form_row(form.marque) }}
+    {{ form_row(form.prix) }}
+    {{ form_row(form.site) }}
+    {{ form_row(form.img) }}
+
+    <button type="submit" class="btn btn-primary">
+        Enregistrer
+    </button>
+{{ form_end(form) }}
